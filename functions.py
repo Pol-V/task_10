@@ -1,9 +1,12 @@
 import random
 import string
-import pprint
+
 
 
 def make_groups(number=10):
+	"""Creates list of groups: every name includes 2 letters and 2 digits.
+	You can adjust quantity of elements of final list with next argument:
+	number. Default value is 10"""
 	letters = string.ascii_letters
 	digits = string.digits
 	res = []
@@ -15,7 +18,12 @@ def make_groups(number=10):
 	return res
 
 
+
+
 def make_students():
+	"""It has 2 lists: names and surnames. Each of them includes 20 elements.
+	Function mingles names and surnames using module random.
+	And returns list from 200 students"""
 	names = ['John', 'Jack', 'Tom', 'Jerry', 'Robin', 'Brad', 'Leo', 'Alex', 'Vlad', 'Helen', 'Angelina', 'Kim', 'Olga',
 	         'Kate', 'Sam', 'Kris', 'Dan', 'Pam', 'Lin', 'Karl']
 	surnames = ['Dicaprio', 'Hardi', 'Robbi', 'Banderas', 'Suinton', 'Anderson', 'Hanks', 'Smit', 'Jolie', 'Pitt',
@@ -27,6 +35,10 @@ def make_students():
 
 
 def fill_groups(list_of_groups=make_groups(), names=make_students()):
+	"""This function takes results of work function make_groups and function make_students.
+	And with usage of module random creates dictionary with next structure.
+	Name of group: list of students in this group.
+	Quantity of students in each group fluctuates from 10 to 30 people. """
 	dic = {k:[] for k in list_of_groups}
 	for key, value in dic.items():
 		for numbers in range(random.randint(10,30)):
@@ -34,8 +46,6 @@ def fill_groups(list_of_groups=make_groups(), names=make_students()):
 	return dic
 
 
-pprint.pprint(fill_groups())
-for i in fill_groups():
-	print(len(fill_groups()[i]))
+
 
 

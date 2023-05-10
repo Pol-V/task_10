@@ -1,0 +1,38 @@
+
+version: '3.9'
+
+services:
+  db:
+    image: postgres
+    restart: on-failure
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5433:5432"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    networks:
+      - net
+
+  app:
+    build: .
+    restart: on-failure
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://postgres:mysecretpassword@db:5432/mydatabase
+    networks:
+      - net
+
+
+
+volumes:
+  dbdata:
+
+networks:
+ net:
+  driver: bridge
